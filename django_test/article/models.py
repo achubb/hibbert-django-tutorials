@@ -15,6 +15,9 @@ class Article(models.Model):
     def __unicode__(self):
         return self.title
 
+    def get_absolute(self):
+        return "/articles/get/%i/" % self.id
+
 class Comment(models.Model):
     name = models.CharField(max_length=200)
     body = models.TextField()
