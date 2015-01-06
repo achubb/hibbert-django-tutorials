@@ -15,7 +15,7 @@ class Article(models.Model):
     def __unicode__(self):
         return self.title
 
-    def get_absolute(self):
+    def get_absolute_url(self):
         return "/articles/get/%i/" % self.id
 
 class Comment(models.Model):
