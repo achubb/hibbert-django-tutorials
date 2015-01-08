@@ -17,7 +17,9 @@
 
 	<h2>Comments</h2>
 	{% for c in article.comment_set.all %}
-	<p>{{c.name}}: {{c.body}}</p>
+	<p><strong>{{c.first_name}} {{c.second_name}}</strong></p>
+	<p>says</p>
+	<p>{{ c.body }}</p>
 	{% endfor %}
 
 	<p><a href="/articles/add_comment/{{article.id}}">Add Comment</a></p>

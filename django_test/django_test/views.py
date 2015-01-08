@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.core.context_processors import csrf
 from forms import MyRegistrationForm
+from django.contrib.formtools.wizard.views import SessionWizardView
+from django.core.mail import send_mail
 
 def login(request):
     c = {}
@@ -47,3 +49,21 @@ def register_user(request):
 
 def register_success(request):
     return render_to_response('register_success.html')
+
+class ContactWizard(SessionWizardView):
+    template_name = "contact_form.html"
+
+    def done(self, form_list, **kwargs):
+        form_data = process_form_data(form_list)
+
+        return render_to_response('done.html', {'form_data': form_data})
+
+def process_form_data(form_list):
+    form_data = [form.cleaned_data for form in form_list]
+
+    send_mail(form_data[0] ['subject'],
+              form_data[2] ['message'],
+              form_data[1] ['sender'],
+              ['andrew.chubb@gmail.com'], fail_silently=False)
+
+    return form_data
