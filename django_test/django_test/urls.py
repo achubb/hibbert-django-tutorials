@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     (r'^articles/', include('article.urls')),
+    (r'^accounts/', include('userprofile.urls')),
 
     # user auth urls
     url(r'^accounts/login/$', 'django_test.views.login'),

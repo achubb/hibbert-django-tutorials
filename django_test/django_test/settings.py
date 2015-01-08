@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.formtools',
     'article',
+    'userprofile',
     'south',
 )
 
@@ -97,3 +98,5 @@ STATICFILES_DIRS = (
 # Media - filesystem path to the directory that will hold user-uploaded files.
 
 MEDIA_ROOT = '/vagrant/django_test/static'
+
+AUTH_PROFILE_MODULE = 'userprofile.UserProfile'
