@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load article_tags %}
 {% block sidebar %}
 <ul>
 	<li><a href="/articles/all">Articles</a></li>
@@ -29,7 +29,7 @@
 		{% for article in articles %}
 			<div>
 				<h2><a href="/articles/get/{{ article.id }}/">{{ article.title }}</a></h2>
-				<p>{{ article.body|lower|truncatewords:"10" }}</p>
+				<p>{{ article.body|lower|article_shorten_body:50 }}</p>
 				<p>{{ article.likes }} people liked this article</a></p>
 			</div>
 		{% endfor %}
