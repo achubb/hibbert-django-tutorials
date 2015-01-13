@@ -4,6 +4,8 @@ from django.contrib import admin
 from django_test.forms import ContactForm1, ContactForm2, ContactForm3
 from django_test.views import ContactWizard
 
+import settings
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -25,3 +27,8 @@ urlpatterns = patterns('',
     url(r'^accounts/register_success/$', 'django_test.views.register_success'),
     url(r'^contact/$', ContactWizard.as_view([ContactForm1, ContactForm2, ContactForm3])),
 )
+
+if not settings.DEBUG:
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+    urlpatterns += staticfiles_urlpatterns()
